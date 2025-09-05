@@ -1,0 +1,50 @@
+import random
+
+def determine_winner(player_choice, computer_choice):
+    if player_choice == computer_choice:
+        return "It's a tie!"
+    elif (player_choice == "rock" and computer_choice == "scissors") or \
+         (player_choice == "scissors" and computer_choice == "paper") or \
+         (player_choice == "paper" and computer_choice == "rock"):
+        return "You win!"
+    else:
+        return "Computer wins!"
+
+def main():
+    choices = ["rock", "paper", "scissors"]
+    
+    print("Welcome to Rock Paper Scissors!")
+    print("Rules: Rock beats scissors, scissors beats paper, paper beats rock.")
+    
+    while True:
+        print("\nMake your choice:")
+        print("1. Rock")
+        print("2. Paper")
+        print("3. Scissors")
+        print("4. Quit")
+        
+        try:
+            player_input = input("Enter your choice (1-4): ")
+            
+            if player_input == "4":
+                print("Thanks for playing! Goodbye!")
+                break
+                
+            if player_input not in ["1", "2", "3"]:
+                print("Please enter a valid option (1-4).")
+                continue
+                
+            player_choice = choices[int(player_input) - 1]
+            computer_choice = random.choice(choices)
+            
+            print(f"\nYou chose: {player_choice}")
+            print(f"Computer chose: {computer_choice}")
+            
+            result = determine_winner(player_choice, computer_choice)
+            print(result)
+            
+        except ValueError:
+            print("Please enter a valid number.")
+
+if __name__ == "__main__":
+    main()
